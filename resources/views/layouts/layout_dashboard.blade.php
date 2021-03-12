@@ -21,6 +21,12 @@
 
             @endif
 
+            @if ($role == 'Student')
+                
+                @include('inc/sidebar/staff/dashboard')
+
+            @endif
+
             @if ($role == 'Administrator')
                 
                 @include('inc/sidebar/administrator/dashboard')

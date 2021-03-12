@@ -140,6 +140,20 @@ class DashboardController extends Controller
 
         }
 
+        if( $role == 'Student' ){
+
+            $t =    'student_list';
+
+            $c =    [
+                        '*'
+                    ];
+
+            $data = library::__FETCHDATA($t,$c);
+
+            return view('pages/dashboard/staff/student', compact('role','id','data'));
+
+        }
+
         if( $role == 'Administrator' ){
 
             $t =    'student_list';
@@ -276,6 +290,13 @@ class DashboardController extends Controller
         $id = Auth::user()->id;
 
         if($role == 'Staff')
+        {
+
+            return view('pages/dashboard/staff/templates',compact('role','id'));
+
+        }
+
+        if($role == 'Student')
         {
 
             return view('pages/dashboard/staff/templates',compact('role','id'));
