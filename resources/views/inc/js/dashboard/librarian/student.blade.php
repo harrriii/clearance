@@ -12,6 +12,7 @@
 
     $('.__complete').click('',function ()  {
     })
+<<<<<<< HEAD
 
 
     $('.__revoke').click('',function ()  {
@@ -70,6 +71,47 @@
 
                         _A: 'hidden'
 
+=======
+
+
+    $('.__revoke').click('',function ()  {
+
+        multiplePk = [];
+
+        $('.chk').each(function(i, obj) {
+
+            if($(this).prop('checked')){
+
+                multiplePk.push($(this).attr('sheetid'));
+
+            }
+
+        });
+
+        d = JSON.stringify({
+            multiplePk
+        })
+
+        sheets = encryptData(d,hp);
+
+        d = JSON.stringify({
+                                data: [
+                                        ['status','Revoked']
+                                    ]
+        })
+
+        v4Data = encryptData(d,hp);
+
+        content = [
+
+                    {
+                            _E: 'label',
+
+                            _C: 'form-label',
+
+                            _V: 'Do you want to revoke this clearance requirement?'
+
+>>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
                     }
                    
                 ]
@@ -89,9 +131,15 @@
                         
                         v2: 'Clearance requirement revoked successfully.',
                         
+<<<<<<< HEAD
                         v3: 'custom',
                         
                         v4: multiInput
+=======
+                        v3: sheets,
+                        
+                        v4: v4Data
+>>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
                 }
 
         __BUILDER(data);
@@ -441,6 +489,7 @@
                     }
                    
                 ]
+<<<<<<< HEAD
 
         data =  {
 
@@ -464,6 +513,31 @@
 
                     v5: '',
 
+=======
+
+        data =  {
+
+                    modalTitle: 'Require Clearance',
+                    
+                    modalContent: content,
+                    
+                    buttonSubmit:  'Save',
+                    
+                    buttonCancel: 'Close',
+                    
+                    url: '/UNIV/INSERT',
+                    
+                    v1: 'clearance_sheet_details',
+                    
+                    v2: 'Clearance requirement added successfully.',
+                    
+                    v3: '',
+                    
+                    v4: '',
+
+                    v5: '',
+
+>>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
                     mi: multiInput,
 
                 }

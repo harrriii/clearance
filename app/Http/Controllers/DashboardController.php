@@ -240,17 +240,13 @@ class DashboardController extends Controller
 
     }
 
-   
-
-
-
-
     // public function student()
     // {
         
     //     return view('pages/dashboard/student');
 
     // }
+    
     public static function schedule()
     {
 

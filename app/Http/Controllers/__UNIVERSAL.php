@@ -408,6 +408,7 @@ class __UNIVERSAL extends Controller
                         $ARR[$TABLE_COLUMNS[$i]] = $file->getClientOriginalName();
 
                         $fileColumn = $TABLE_COLUMNS[$i];
+<<<<<<< HEAD
 
                     }
                     else{
@@ -416,6 +417,16 @@ class __UNIVERSAL extends Controller
 
                     }
 
+=======
+
+                    }
+                    else{
+
+                        $ARR[$TABLE_COLUMNS[$i]] = $TEMP[$TABLE_COLUMNS[$i]];
+
+                    }
+
+>>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
                 }
             
             }
@@ -436,6 +447,7 @@ class __UNIVERSAL extends Controller
             $JSON = $this->cryptoJsAesDecrypt('mlqu-hash-password-2021',$DATA);
 
             foreach ($JSON['_D'] as $key => $value) {
+<<<<<<< HEAD
 
                 for ($i=1; $i < count($TABLE_COLUMNS); $i++) { 
                   
@@ -479,6 +491,51 @@ class __UNIVERSAL extends Controller
            
                 if($fileColumn){
 
+=======
+
+                for ($i=1; $i < count($TABLE_COLUMNS); $i++) { 
+                  
+                    // check if input = table column
+                    if(in_array($TEMP[$TABLE_COLUMNS[$i]],$TABLE_COLUMNS))
+                    {
+
+                        return redirect()->back()->with('fail-message', 'Something went wrong!');
+
+                    }
+                    else
+                    {
+
+                        if($request->hasFile($TABLE_COLUMNS[$i]))
+                        {
+
+                            $file = $request->file($TABLE_COLUMNS[$i]);
+
+                            $ARR[$TABLE_COLUMNS[$i]] = $file->getClientOriginalName();
+
+                            $fileColumn = $TABLE_COLUMNS[$i];
+
+                        }
+                        else
+                        {
+
+                            if( isset($JSON['_TC']) )
+                            {
+                                $ARR[$JSON['_TC']] = $value;
+                            }
+                           
+                            $ARR[$TABLE_COLUMNS[$i]] = $TEMP[$TABLE_COLUMNS[$i]];
+
+                        }
+
+                    }
+
+                }
+
+                library::__STORE($TABLENAME,$ARR);
+           
+                if($fileColumn){
+
+>>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
                     $this->__UPLOAD($request->file($fileColumn),$TEMP['v5']);
 
                 }
@@ -514,14 +571,21 @@ class __UNIVERSAL extends Controller
         $TABLE_COLUMNS = Schema::getColumnListing($TABLENAME);
 
         $ARR = array();
+    
+        $DATA = base64_decode($TEMP['v3']);
 
-        for ($i=0; $i < count($TABLE_COLUMNS); $i++) { 
+        $JSON = $this->cryptoJsAesDecrypt('mlqu-hash-password-2021',$DATA);
 
+<<<<<<< HEAD
             if( isset($TEMP['v4']) )
             {
+=======
+        $w = 0;
+>>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
 
-                $DATA = base64_decode($TEMP['v4']);
+        foreach ($JSON as $key => $value) {
 
+<<<<<<< HEAD
                 $JSON = $this->cryptoJsAesDecrypt('mlqu-hash-password-2021',$DATA);
     
                 foreach ($JSON['data'] as $key => $value) {
@@ -531,13 +595,49 @@ class __UNIVERSAL extends Controller
                         return redirect()->back()->with('fail-message','Something went wrong!');
                     }
                     else{
+=======
+            for ($i=0; $i < count($value); $i++) { 
+>>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
 
-                        if($TABLE_COLUMNS[$i] == $value[0]){
+                $w++;
 
+<<<<<<< HEAD
                             $ARR[$TABLE_COLUMNS[$i]] = $value[1];
+=======
+
+                $ARR[$TABLE_COLUMNS[0]] = $value[$i];
+
+                for ($x=0; $x < count($TABLE_COLUMNS); $x++) { 
+
+                    if( isset($TEMP['v4']) )
+                    {
         
+                        $D = base64_decode($TEMP['v4']);
+        
+                        $J = $this->cryptoJsAesDecrypt('mlqu-hash-password-2021',$D);
+
+                        foreach ($J['data'] as $key => $v) {
+                            
+                            if( in_array($v[1], $TABLE_COLUMNS)){
+                                
+                                return redirect()->back()->with('fail-message','Something went wrong!');
+                            }
+                            else{
+        
+                               
+                                if($TABLE_COLUMNS[$x] == $v[0]){
+>>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
+        
+                                    $ARR[$TABLE_COLUMNS[$x]] = $v[1];
+                
+                                }
+
+                            }
+                         
                         }
+
                     }
+<<<<<<< HEAD
                 }
             }
             else
@@ -548,18 +648,46 @@ class __UNIVERSAL extends Controller
                     return redirect()->back()->with('fail-message','Something went wrong!');
                 }
                 else{
+=======
+                    else
+                    {
+        
+                        if( in_array($request[$TABLE_COLUMNS[$x]], $TABLE_COLUMNS)){
+                            
+                            return redirect()->back()->with('fail-message','Something went wrong!');
+                        }
+                        else{
+        
+                            $ARR[$TABLE_COLUMNS[$x]] = $request[$TABLE_COLUMNS[$x]];
+                            
+                        }
 
-                    $ARR[$TABLE_COLUMNS[$i]] = $request[$TABLE_COLUMNS[$i]];
-                    
+                        
+>>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
+
+                    }
+              
                 }
+<<<<<<< HEAD
             }
 
         }
+=======
+>>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
 
-        $ARR[$TABLE_COLUMNS[0]] = $TEMP['v3'];
+                // dd($ARR);
+                library::__UPDATE($TABLENAME,$ARR,$TABLE_COLUMNS[0]);
+              
+            }
+            // dd($w);
 
+<<<<<<< HEAD
         library::__UPDATE($TABLENAME,$ARR,$TABLE_COLUMNS[0]);
         
+=======
+        }
+
+>>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
         return redirect()->back()->with('success-message',$TEMP['v2']);
 
     }
