@@ -31,7 +31,6 @@
         </div>
    
       @endif
-
   
       @if(session()->has('fail-message'))
   

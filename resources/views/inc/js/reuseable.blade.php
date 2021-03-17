@@ -112,8 +112,6 @@
     }
 
     function formBuild(formId,action,content,footer,enctype=null){
-        
-
      
         var form = document.getElementById(formId);
 
@@ -134,8 +132,7 @@
 // FORM BUILDER
     function __BUILDER(DATA, MODALNAME='modal_univ'){
 
-        content = ' ';
-
+        content = '';
 
         for (let i = 0; i < data['modalContent'].length; i++) {
 
@@ -143,6 +140,7 @@
 
         }
 
+        console.log(content)
 
         content += form_input('','v1','','',data['v1'],'hidden');
 
@@ -154,6 +152,8 @@
 
         content += form_input('','v5','','',data['v5'],'hidden');
 
+        content += form_input('','mi','','',data['mi'],'hidden');
+
         footer = form_button('btn_submit',data['buttonSubmit'],'btn btn-sm mlqu-color text-light','submit','background:#7A353C;height:25px;width:80px');
 
         footer += form_button('btn_close',data['buttonCancel'],'btn btn-sm mlqu-color text-light','button','background:#7A353C;height:25px;width:80px','data-dismiss="modal"');
@@ -163,6 +163,7 @@
         formBuild('form_univ',data['url'],content,footer,data['v6']);
 
     }
+
     function __CONTENTBUILDER(DATA){ 
         
         if( DATA['_E'] == 'input' ){
@@ -234,6 +235,60 @@
 
         }
 
+        if( DATA['_E'] == 'textarea' ){
+
+            output = '<textarea ';
+
+            if ('_C' in DATA) {
+                
+                output += 'class = "'+DATA['_C']+'" ';
+
+            }
+
+            if ('_N' in DATA) {
+                
+                output += 'name = "'+DATA['_N']+'" ';
+
+            }
+
+            if ('_I' in DATA) {
+                
+                output += 'id = "'+DATA['_I']+'" ';
+
+            }
+
+            if ('_P' in DATA) {
+                
+                output += 'placeholder = "'+DATA['_P']+'" ';
+
+            }
+
+            if ('_R' in DATA) {
+                
+                output += 'rows = "'+DATA['_R']+'" ';
+
+            }
+
+            if ('_A' in DATA) {
+                
+                output += DATA['_A'];
+
+            }
+
+            output += '>';
+
+            if ('_V' in DATA) {
+                
+                output +=  DATA['_V'];
+
+            }
+
+            output += '</textarea>'
+
+            return output;
+
+        }
+
         if( DATA['_E'] == 'label' ){
 
             output = '<label ';
@@ -278,8 +333,6 @@
 
             return output;
         }
-
-       
 
     }
     function __ADDTL(DATA){
@@ -348,26 +401,6 @@
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
 
     function form_label(id,content,t_class){
 
@@ -620,7 +653,7 @@ $( ".icon" )
 
 $(document.body).ready(function(){
         
-    $(".alert").delay(1500).slideUp(500);
+    $(".alert-close").delay(1500).slideUp(500);
 
 })
 
@@ -684,11 +717,108 @@ $(document.body).ready(function(){
 
 
     **** FOR MODAL ****
+
+
+
+    ****JS GET JSON****
+    d = {   
+            t: 
+            c:  [     
+                  
+                ],
+            j:  [
+                    ['', '', '', ''],
+                ],
+            w:  [
+                    ['', '', '']
+                ],
+            g:
+            
+            o = '';
+
+            lj =    [
+                        ['', '', '', ''],
+                    ],;
+
+            wo =    [
+                        ['', '', '']
+                    ];
+        }
+
+    d = JSON.stringify(d);
+
+    encyptedData = encryptData(d,hp);
+
+    $.getJSON('/UNIV/FETCHDATA/'+encyptedData, function(data) {
+        
+       some code here..
+
+    })
+
+    ****JS GET JSON****
+
+
+
+    ****CHECK IF OBJ IS UNDEFINED**** 
+
+    if( typeof res[0] === "undefined" )
+    {
+        console.log('test');
+    }
+    else
+    {
+        console.log('try');
+    }
+
+    ****CHECK IF OBJ IS UNDEFINED**** 
     
+
+
+    ****CREATE JS FUNCTION WITH CB**** 
+
+    function getClearance(callback){
+
+    }
+
+    getClearance(function (res){
+
+    }
+
+    ****CREATE JS FUNCTION WITH CB**** 
     
-    
-    
-    
-    
-    
+
+
+
+    ****MULTI INPUT*** 
+
+    multiInput =  JSON.stringify({
+
+        _T: 'PK-INPUT',
+
+        _TC: 'Sheet_no', (OPTIONAL)
+
+        _D: selectedSheets
+
+    })
+
+    multiInput = encryptData(multiInput,hp);
+
+    _T: 
+    *PK-INPUT - Kapag kailangan idefine yung pag iinputan na Column
+    *PK- Kapag hindi na kailangan idefine yung pag iinputan na Column
+
+    _TC: Column
+
+
+    ****MULTI INPUT*** 
+
+
+
+
+
+
+
+
+
+
 --}}

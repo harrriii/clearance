@@ -32,7 +32,6 @@
    
       @endif
 
-  
       @if(session()->has('fail-message'))
   
         <div class="row">
@@ -44,7 +43,6 @@
               {{ session()->get('fail-message') }}
     
             </div>
-    
     
           </div>
     

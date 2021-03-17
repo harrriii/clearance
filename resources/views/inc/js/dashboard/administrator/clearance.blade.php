@@ -306,40 +306,40 @@
 
         data = [
                 {
-                        _E: 'option-fetch-value',
+                    _E: 'option-fetch-value',
 
-                        _U: '/UNIV/FETCHDATA/',
+                    _U: '/UNIV/FETCHDATA/',
 
-                        _ED: encyptedData2,
+                    _ED: encyptedData2,
 
-                        _I: 'txtYear',
+                    _I: 'txtYear',
 
-                        _IV: _IV,
+                    _IV: _IV,
 
-                        _OV: _OV
+                    _OV: _OV
                 },
                 {
-                        _E: 'option-selected-value',
+                    _E: 'option-selected-value',
 
-                        _FS: 'txtYear'
+                    _FS: 'txtYear'
                 },
                 {
-                        _E: 'option-fetch-value',
+                    _E: 'option-fetch-value',
 
-                        _U: '/UNIV/FETCHDATA/',
+                    _U: '/UNIV/FETCHDATA/',
 
-                        _ED: encyptedData1,
+                    _ED: encyptedData1,
 
-                        _I: 'txtDepartment',
+                    _I: 'txtDepartment',
 
-                        _IV: _IV,
+                    _IV: _IV,
 
-                        _OV: _OV
+                    _OV: _OV
                 },
                 {
-                        _E: 'option-selected-value',
+                    _E: 'option-selected-value',
 
-                        _FS: 'txtDepartment'
+                    _FS: 'txtDepartment'
                 },
         ]
 
@@ -353,34 +353,34 @@
 
         content = [
                     {
-                            _E: 'label',
+                        _E: 'label',
 
-                            _C: 'form-label',
+                        _C: 'form-label',
 
-                            _V: 'Do you want to delete this item?',
+                        _V: 'Do you want to delete this item?',
 
                     },
                    
                 ]
 
         data =  {
-                        modalTitle: 'Delete Clearance Requirement',
-                        
-                        modalContent: content,
-                        
-                        buttonSubmit:  'Confirm',
-                        
-                        buttonCancel: 'Close',
-                        
-                        url: '/UNIV/DELETE',
-                        
-                        v1: 'clearance_requirements',
-                        
-                        v2: 'Clearance requirement deleted successfully.',
-                        
-                        v3: code,
-                        
-                        v4: ''
+                    modalTitle: 'Delete Clearance Requirement',
+                    
+                    modalContent: content,
+                    
+                    buttonSubmit:  'Confirm',
+                    
+                    buttonCancel: 'Close',
+                    
+                    url: '/UNIV/DELETE',
+                    
+                    v1: 'clearance_requirements',
+                    
+                    v2: 'Clearance requirement deleted successfully.',
+                    
+                    v3: code,
+                    
+                    v4: ''
                 }
 
         __BUILDER(data);
@@ -421,13 +421,13 @@
 
                     transferWith: [
 
-                            'id',
+                        'id',
 
-                            'role',
+                        'role',
 
-                            'data',
+                        'data',
 
-                            'filter'
+                        'filter'
                     ],
 
                     filterData: 
@@ -491,19 +491,19 @@
 
                     w:[
 
-                            ['year', '=', selected]
+                        ['year', '=', selected]
 
                     ],
 
                     transferWith: [
 
-                            'id',
+                        'id',
 
-                            'role',
+                        'role',
 
-                            'data',
+                        'data',
 
-                            'filter'
+                        'filter'
                     ],
                     filterData: 
                                 {

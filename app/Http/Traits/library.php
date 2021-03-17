@@ -75,24 +75,28 @@ trait library
             }
 
         }
+
         if( isset($_WHERE) )
         {
 
             $DATA->where($_WHERE);
 
         }
+
         if( isset($_GRPBY) )
         {
 
             $DATA->groupBy($_GRPBY);
 
         }
+
         if( isset($_ORDBY) )
         {
 
-            $DATA->orderBy($_ORDBY);
+            $DATA->orderBy($_ORDBY[0],$_ORDBY[1]);
 
         }
+
         if( isset($_WHEREOR) )
         {
 
@@ -104,10 +108,11 @@ trait library
 
         }
 
-        // if($TABLE == 'enlistment_subject'){
-        //     // return $DATA->toSql();
+        // if($TABLE == 'clearance_sheet'){
+        //     return $DATA->toSql();
         // }
        
+        // dd($DATA->get());
        
         return $DATA->get();
     }

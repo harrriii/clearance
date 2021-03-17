@@ -50,6 +50,14 @@ Route::get('/dashboard/campus', [DashboardController::class, 'campus']);
 
 Route::get('/dashboard/student', [DashboardController::class, 'student']);
 
+Route::get('/dashboard/student/sheets', [DashboardController::class, 'StudentSheets']);
+
+Route::get('/dashboard/student/clearance/information', [DashboardController::class, 'ClearanceInformation']);
+
+Route::get('/dashboard/librarian/students/sheets', [DashboardController::class, 'StudentSheets']);
+
+Route::get('/dashboard/librarian/students/required', [DashboardController::class, 'RequiredStudents']);
+
 Route::get('/dashboard/department', [DashboardController::class, 'department']);
 
 Route::get('/dashboard/excel/templates', [DashboardController::class, 'templates']);
