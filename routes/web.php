@@ -58,11 +58,8 @@ Route::get('/dashboard/librarian/students/sheets', [DashboardController::class, 
 
 Route::get('/dashboard/librarian/students/required', [DashboardController::class, 'RequiredStudents']);
 
-<<<<<<< HEAD
-=======
 Route::get('/dashboard/librarian/students/completed', [DashboardController::class, 'RequiredStudents']);
 
->>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
 Route::get('/dashboard/department', [DashboardController::class, 'department']);
 
 Route::get('/dashboard/excel/templates', [DashboardController::class, 'templates']);
