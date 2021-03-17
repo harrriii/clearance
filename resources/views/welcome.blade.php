@@ -10,76 +10,28 @@
 
   </div>
   
-  <div class="pricing-header px-3 py-3 pt-md-4 pb-md-4 mx-auto text-center">
+  <div class="pricing-header px-3 py-2 pt-md-4 pb-md-4 pb-1 mx-auto text-center">
 
     <h1 class="display-4">Clearance System</h1>
 
   </div>
 
-
-
   <div class="row">
-    <div class="col-sm-10 pt-md-1 pr-0 text-right">
-        <label>Search</label>
-    </div>
-    <div class="col-sm-2 text-right">
-        <input type="text" class="form-control" style="font-size:9pt">
-    </div>
-  </div>
 
-  <div class="row">
-      <div class="col-sm-12">
-        <div class="table-responsive-lg mt-2" style="white-space:nowrap;">
+    <div class="col-sm-12" >
+
+      <div class="mlqu-color border rounded p-1 text-center text-light">
     
-            <table class="table table-striped">
-      
-              <thead>
-      
-                <tr>
-      
-                  <th class="text-center py-2" style="font-size: 9pt !important;" >Student Id</th>
-  
-                  <th class="text-center py-2" style="font-size: 9pt !important;" >Student Name</th>
-
-                  <th class="text-center py-2" style="font-size: 9pt !important;" >Department</th>
-
-                  <th class="text-center py-2" style="font-size: 9pt !important;" >Status</th>
-
-                  <th class="text-center py-2" style="font-size: 9pt !important;" >Remarks</th>
-               
-                </tr>
-            
-              </thead>
-            
-              <tbody>
-                
-                @foreach ($data as $d)
-
-                <tr >
-        
-                  <td style="font-size: 8pt !important;" class="text-center py-1">{{$d->student_id}}</td>
-
-                  <td style="font-size: 8pt !important;" class="text-center py-1">{{$d->firstname.' '.$d->middlename.' '.$d->lastname}}</td>
-
-                  <td style="font-size: 8pt !important;" class="text-center py-1">{{$d->department}}</td>
-
-                  <td style="font-size: 8pt !important;" class="text-center py-1">{{$d->status}}</td>
-
-                  <td style="font-size: 8pt !important;" class="text-center py-1">{{$d->remarks}}</td>
-
-                </tr>
-  
-              @endforeach
-              
-  
-              
+        <h5 id="txtClearanceBanner"></h5>
     
-              </tbody>
+        <small id="txtClearanceDate"></small>
     
-            </table>
-    
-          </div>
+        <small id="txtClearanceBatch" no="" hidden=""></small>
+
       </div>
+      
+    </div>
+ 
   </div>
 
 
@@ -121,4 +73,15 @@
     </div>
   </footer>
 </main>
+
+@include('inc\modal\modals') 
 @endsection
+
+@section('script')
+
+    @include('inc\js\reuseable') 
+
+    @include('inc\js\home\clearance') 
+
+@endsection
+

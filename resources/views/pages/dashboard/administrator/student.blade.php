@@ -4,9 +4,49 @@
 
   <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <div class="container-fluid mt-1 px-0 py-1">
 
-      <h1 class="h2" style="font-size: 15pt">Student List</h1>
+      <div class="row">
+
+        <div class="col-sm-12">
+
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-1 border-bottom">
+
+            <h1 class="h2" style="font-size: 15pt">Student</h1>
+      
+          </div>
+        
+        </div>
+      
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-12 py-1 pt-0" style="font-size:10pt;">
+
+          <nav aria-label="breadcrumb">
+          
+            <ol class="breadcrumb py-1">
+          
+              <li class="breadcrumb-item">
+                
+                <a href="/dashboard/student" class="item-active">Student List</a>
+            
+              </li>
+          
+              <li class="breadcrumb-item">
+            
+                <a href="/dashboard/student/sheets" class="text-secondary">Student Sheets</a>
+            
+              </li>
+          
+            </ol>
+         
+          </nav>
+
+        </div>
+
+      </div>
 
     </div>
 
@@ -44,7 +84,6 @@
               {{ session()->get('fail-message') }}
     
             </div>
-    
     
           </div>
     

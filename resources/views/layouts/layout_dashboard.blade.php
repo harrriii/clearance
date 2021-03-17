@@ -23,7 +23,7 @@
 
             @if ($role == 'Student')
                 
-                @include('inc/sidebar/staff/dashboard')
+                @include('inc/sidebar/student/dashboard')
 
             @endif
 

@@ -253,42 +253,38 @@
 
         content = [
                     {
-                            _E: 'label',
+                        _E: 'label',
 
-                            _C: 'form-label',
+                        _C: 'form-label',
 
-                            _V: 'Do you want to delete this item?',
+                        _V: 'Do you want to delete this item?',
 
                     },
                    
                 ]
 
         data =  {
-                        modalTitle: 'Delete Clearance Requirement',
-                        
-                        modalContent: content,
-                        
-                        buttonSubmit:  'Confirm',
-                        
-                        buttonCancel: 'Close',
-                        
-                        url: '/UNIV/DELETE',
-                        
-                        v1: 'department_list',
-                        
-                        v2: 'Clearance requirement deleted successfully.',
-                        
-                        v3: code,
-                        
-                        v4: ''
+                    modalTitle: 'Delete Clearance Requirement',
+                    
+                    modalContent: content,
+                    
+                    buttonSubmit:  'Confirm',
+                    
+                    buttonCancel: 'Close',
+                    
+                    url: '/UNIV/DELETE',
+                    
+                    v1: 'department_list',
+                    
+                    v2: 'Clearance requirement deleted successfully.',
+                    
+                    v3: code,
+                    
+                    v4: ''
                 }
 
         __BUILDER(data);
 
     })
 
-  
-    
- 
-    
   </script>

@@ -6,6 +6,14 @@
   vertical-align: text-bottom;
 }
 
+.mlqu-font, .item-active {
+  color: #7A353C !important;
+}
+
+.mlqu-color {
+  background: #7A353C !important;
+}
+
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors

@@ -240,17 +240,13 @@ class DashboardController extends Controller
 
     }
 
-   
-
-
-
-
     // public function student()
     // {
         
     //     return view('pages/dashboard/student');
 
     // }
+    
     public static function schedule()
     {
 
@@ -270,8 +266,6 @@ class DashboardController extends Controller
                     ['user_id', '=', Auth::user()->id ]
                 ];
 
-        // dd(Auth::user()->id);
-
         $temp = library::__FETCHDATA($t,$c,null,$w,null);
         
         $id = Auth::user()->id;
@@ -281,6 +275,211 @@ class DashboardController extends Controller
         $role = $role[0]['name'];
 
         return $role;
+    }
+
+    public function RequiredStudents()
+    {
+        $role = $this->getRole();
+
+        $id = Auth::user()->id;
+
+        if( $role == 'Librarian' )
+        {
+
+            $t =    'clearance_sheet_details';
+
+            $c =    [
+                  
+                        'clearance_sheet_details.id as sheetid',
+                        
+                        'clearance_sheet.id as sheetNo',
+                
+                        'clearance_sheet.student_id',
+                
+                        'clearance_sheet.section',
+                
+                        'clearance_sheet.year',
+                
+                        'clearance_sheet.campus',
+                
+                        'clearance_sheet.batch',
+                
+                        'student_list.firstname',
+                
+                        'student_list.middlename',
+                
+                        'student_list.lastname',
+
+                        'year_lvl.name as yearname',
+                
+                    ];
+
+            $j =    [
+
+                        ['clearance_sheet','clearance_sheet.id','=','clearance_sheet_details.sheet_no'],
+
+                        ['student_list','student_list.student_id','=','clearance_sheet.student_id'],
+
+                        ['year_lvl','year_lvl.id','=','clearance_sheet.year'],
+
+                    ];
+
+
+            $w =    [
+
+                        ['signed_by','=',$id],
+
+                        ['status','=','Pending']
+
+                    ];
+
+            $data = library::__FETCHDATA($t,$c,$j,$w);
+
+            $t =    'year_lvl';
+
+            $c =    '*';
+
+            $filter = library::__FETCHDATA($t,$c);
+
+            $t =    'department_list';
+
+            $c =    'id';
+
+            $c =    'id';
+
+            $w =    [
+                     
+                        ['name','=','Library']
+                    
+                    ];
+
+            $departmentno = library::__FETCHDATA($t,$c,null,$w);
+
+            $departmentno =  $departmentno[0]->id;
+
+            $selectedFilter = '*';
+            
+            return view('pages/dashboard/librarian/required',compact('role','id','data','filter','selectedFilter','departmentno'));
+
+        }     
+
+
+    }
+
+    public function StudentSheets()
+    {
+        
+        $role = $this->getRole();
+
+        $id = Auth::user()->id;
+
+        if( $role == 'student' ) 
+        {
+
+            $t =    'clearance_sheet';
+
+            $c =    [
+                        'clearance_sheet.id',
+                        'clearance_sheet.student_id',
+                        'clearance_sheet.section',
+                        'clearance_sheet.year',
+                        'clearance_sheet.campus',
+                        'clearance_sheet.batch',
+                        'student_list.firstname',
+                        'student_list.middlename',
+                        'student_list.lastname',
+                    ];
+
+            $j =    [
+
+                        ['student_list','student_list.student_id','=','clearance_sheet.student_id']
+
+                    ];
+
+            $data = library::__FETCHDATA($t,$c,$j);
+
+            $t =    'clearance_sheet';
+
+            $c =    [
+                        'batch',
+                    ];
+
+            $g =    'batch';
+
+            $filter = library::__FETCHDATA($t,$c,null,null,$g);
+
+            $selectedFilter = '*';
+            
+            return view('pages/dashboard/administrator/studentsheets',compact('role','id','data','filter','selectedFilter'));
+
+        }
+
+        if( $role == 'Librarian' )
+        {
+
+            $t =    'clearance_sheet';
+
+            $c =    [
+                  
+                        'clearance_sheet.id as sheetNo',
+                
+                        'clearance_sheet.student_id',
+                
+                        'clearance_sheet.section',
+                
+                        'clearance_sheet.year',
+                
+                        'clearance_sheet.campus',
+                
+                        'clearance_sheet.batch',
+                
+                        'student_list.firstname',
+                
+                        'student_list.middlename',
+                
+                        'student_list.lastname',
+
+                        'year_lvl.name as yearname',
+                
+                    ];
+
+            $j =    [
+
+                        ['student_list','student_list.student_id','=','clearance_sheet.student_id'],
+
+                        ['year_lvl','year_lvl.id','=','clearance_sheet.year'],
+
+                    ];
+
+            $data = library::__FETCHDATA($t,$c,$j);
+
+            $t =    'year_lvl';
+
+            $c =    '*';
+
+            $filter = library::__FETCHDATA($t,$c);
+
+            $t =    'department_list';
+
+            $c =    'id';
+
+            $c =    'id';
+
+            $w =    [
+                     
+                        ['name','=','Library']
+                    
+                    ];
+
+            $departmentno = library::__FETCHDATA($t,$c,null,$w);
+
+            $departmentno =  $departmentno[0]->id;
+
+            $selectedFilter = '*';
+            
+            return view('pages/dashboard/librarian/sheets',compact('role','id','data','filter','selectedFilter','departmentno'));
+
+        }        
     }
 
     public function index()
@@ -299,7 +498,68 @@ class DashboardController extends Controller
         if($role == 'Student')
         {
 
-            return view('pages/dashboard/staff/templates',compact('role','id'));
+            $t =    'clearance_batch';
+
+            $c =    'id';
+                    
+            $o =    'id';
+
+            $a =    'desc';
+
+            $clearanceBatch = library::__FETCHLATESTCODE($t,$c,$o,$a,0);
+
+            // DECREMENT 1 BCOZ USING FETCHLATEST WILL INCREMENT 1 VALUE TO THE LATEST CODE
+            $clearanceBatch = $clearanceBatch - 1;
+
+            $hasClearance = isset($clearanceBatch);
+
+            $studentId = $this->getStudentId($id);
+
+            $t =    'clearance_sheet';
+
+            $c =    [
+                      
+                        'clearance_sheet.id',
+                        
+                        'clearance_sheet.student_id',
+                        
+                        'clearance_sheet.section',
+                        
+                        'clearance_sheet.year',
+                        
+                        'clearance_sheet.batch',
+                        
+                        'clearance_sheet.campus',
+
+                        'campus_list.name as campusname',
+
+                        'year_lvl.name as yearname',
+
+                    ];
+
+            $w =    [   
+                      
+                        ['batch','=',$clearanceBatch]
+                  
+                    ];
+
+            $j =    [
+
+                        ['campus_list','campus_list.id','=','clearance_sheet.campus'],
+
+                        ['year_lvl','year_lvl.id','=','clearance_sheet.campus']
+
+                    ];
+
+            $data = library::__FETCHDATA($t,$c,$j,$w);
+
+            $hasSheet = $this->hasCount($data);
+
+
+
+
+           
+            return view('pages/dashboard/student/clearance',compact('role','id','hasClearance','hasSheet','data'));
 
         }
 
@@ -389,6 +649,81 @@ class DashboardController extends Controller
        
     }
 
+    public function clearanceInformation()
+    {
+
+        $role = $this->getRole();
+
+        $id = Auth::user()->id;
+
+        $studentId = $this->getStudentId($id);
+
+        $t =    'clearance_batch';
+
+        $c =    'id';
+                
+        $o =    'id';
+
+        $a =    'desc';
+
+        $clearanceBatch = library::__FETCHLATESTCODE($t,$c,$o,$a,0);
+
+        $studentId = $this->getStudentId($id);
+
+        $t =    'clearance_sheet';
+
+        $c =    [
+                    'id'
+                ];
+
+        $w =    [
+                    ['student_id','=', $studentId]
+                ];
+
+        $sheetNo = library::__FETCHDATA($t,$c,null,$w);
+
+        foreach ($sheetNo as $key => $value) {
+            
+            $sheetNo = $value->id;
+        
+        }
+
+        $t =    'clearance_sheet_details';
+
+        $c =    [
+                    'clearance_sheet_details.id as id',
+                    'clearance_sheet_details.department',
+                    'clearance_sheet_details.signed_by',
+                    'clearance_sheet_details.attachment',
+                    'clearance_sheet_details.status',
+                    'clearance_sheet_details.remarks',
+                    'department_list.name as departmentname',
+                    'users.name',
+                ];
+
+        $j =    [
+
+                    ['department_list','department_list.id','=','clearance_sheet_details.department'],
+                    
+                ];
+
+        $lj =    [
+            
+                    ['users','users.id','=','clearance_sheet_details.signed_by']
+            
+                ];
+
+        $w =    [
+                    ['clearance_sheet_details.sheet_no','=',$sheetNo]
+                ];
+
+        $data = library::__FETCHDATA($t,$c,$j,$w,null,null,$lj);
+
+        // dd($data);
+        return view('pages/dashboard/student/clearanceinformation',compact('role','id','data'));
+  
+    }
+
     public function department(){
 
         $role = $this->getRole();
@@ -412,6 +747,23 @@ class DashboardController extends Controller
     }
         
 
+    public function hasCount($data)
+    {
+        if( count($data) )
+        {
+
+            $output = true;
+
+        }
+        else
+        {
+
+            $output = false;
+        
+        }
+
+        return $output;
+    }
     
 
     public function report()
@@ -480,6 +832,30 @@ class DashboardController extends Controller
         $id = Auth::user()->id;
 
         return view('pages/dashboard/registrar/class',compact('classes','role','id'));
+    }
+
+    public function getStudentId($userId){
+
+        $t =    'student_account';
+
+        $c =    [
+                    'stud_id'
+                ];
+
+        $w =    [
+                    ['userid','=',$userId]
+                ];
+        
+        $id = library::__FETCHDATA($t,$c,null,$w);
+                
+        foreach ($id as $key => $value) {
+
+            $id = $value->stud_id;
+
+        }
+
+        return $id;
+
     }
 
     public function getEnlistmentSubjects($data){

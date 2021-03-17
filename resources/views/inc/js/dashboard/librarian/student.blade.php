@@ -10,53 +10,69 @@
 
     })
 
-    $('.__test').click('',function ()  {
+    $('.__complete').click('',function ()  {
+    })
+
+
+    $('.__revoke').click('',function ()  {
+
+        multiplePk = [];
+
+        $('.chk').each(function(i, obj) {
+
+            if($(this).prop('checked')){
+
+                multiplePk.push($(this).attr('sheetid'));
+
+            }
+
+        });
+
+        d = JSON.stringify({
+            multiplePk
+        })
+
+        sheets = encryptData(d,hp);
+
+        d = JSON.stringify({
+                                data: [
+                                        ['status','Revoked']
+                                    ]
+        })
+
+        v4Data = encryptData(d,hp);
 
         content = [
+
                     {
+                            _E: 'label',
 
-                        _E: 'label',
+                            _C: 'form-label',
 
-                        _C: 'form-label',
+                            _V: 'Do you want to revoke this clearance requirement?'
 
-                        _V: 'Department',
-
-                    },
-                    {
-                        _E: 'input',
-
-                        _T: 'password',
-
-                        _I: 'txtUsername',
-
-                        _N: 'username',
-
-                        _P: 'Enter your username',
-
-                        _C: 'form-control',
-                        
                     }
                    
-            ]
+                ]
 
         data =  {
-                        modalTitle: 'Edit Clearance Batch',
+                        modalTitle: 'Revoke Clearance Requirement',
                         
                         modalContent: content,
                         
-                        buttonSubmit:  'Save',
+                        buttonSubmit:  'Confirm',
                         
                         buttonCancel: 'Close',
                         
                         url: '/UNIV/EDIT',
                         
-                        v1: 'clearance_batch',
+                        v1: 'clearance_sheet_details',
                         
-                        v2: 'Clearance batch updated successfully.',
+                        v2: 'Clearance requirement revoked successfully.',
                         
-                        v3: '',
+                        v3: sheets,
                         
-                        v4: ''
+                        v4: v4Data
                 }
 
         __BUILDER(data);
@@ -231,11 +247,16 @@
         if( count != 0){
 
             $('.__add').removeAttr('disabled');
+
+            $('.__revoke').removeAttr('disabled');
            
         }
         else{
 
             $('.__add').attr('disabled',true);
+
+            $('.__revoke').attr('disabled',true);
+
         }
 
     })
@@ -250,6 +271,8 @@
 
             $('.__add').removeAttr('disabled');
 
+            $('.__revoke').removeAttr('disabled');
+
         }
         else{
             
@@ -257,129 +280,176 @@
 
             $('.__add').attr('disabled',true);
 
+            $('.__revoke').attr('disabled',true);
+
         }
 
     })
 
     $('.__add').click('',function ()  {
-        alert('hello')
 
-        startedBy = $('.t').attr('clas');
+        selectedSheets = [];
+
+        $('.chk').each(function(i, obj) {
+
+            if($(this).prop('checked')){
+
+                selectedSheets.push($(this).attr('sheetno'));
+
+            }
+
+        });
+
+        
+        multiInput =  JSON.stringify({
+
+            _T: 'PK-INPUT',
+
+            _TC: 'sheet_no',
+
+            _D: selectedSheets
+
+        })
+
+        multiInput = encryptData(multiInput,hp);
+
+        signedBy = $('.t').attr('clas');
+
+        departmentNo = $('.t').attr('dep');
+
+        console.log(departmentNo);
 
         content = [
-            {
 
-_E: 'label',
+                    {
 
-_C: 'form-label',
+                        _E: 'label',
 
-_V: 'Student Information',
+                        _C: 'form-label',
 
-},
-{
-_E: 'input',
+                        _V: 'Remarks',
 
-_T: 'text',
+                    },
+                    {
+                        
+                        _E: 'textarea',
 
-_I: 'txtRemarks',
+                        _I: 'txtRemarks',
 
-_N: 'remarks',
+                        _N: 'remarks',
 
-_C: 'form-control',
+                        _P: 'Enter clearance remarks here..',
 
-_A: 'data-role="tagsinput"'
+                        _C: 'form-control',
 
-}
+                        _R: '4'
+
+                    },
+                    {
+                        
+                        _E: 'input',
+
+                        _T: 'text',
+
+                        _N: 'status',
+
+                        _C: 'form-control',
+
+                        _V: 'Pending',
+
+                        _A: 'hidden'
+
+                    },
+                    {
+                        
+                        _E: 'input',
+
+                        _T: 'text',
+
+                        _N: 'signed_by',
+
+                        _C: 'form-control',
+
+                        _V: signedBy,
+
+                        _A: 'hidden'
+
+                    },
+                    {
+                        
+                        _E: 'input',
+
+                        _T: 'text',
+
+                        _N: 'department',
+
+                        _C: 'form-control',
+
+                        _V: departmentNo,
+
+                        _A: 'hidden'
+
+                    },
+                    {
+                        
+                        _E: 'input',
+
+                        _T: 'text',
+
+                        _N: 'sheet_no',
+
+                        _C: 'form-control',
+
+                        _V: '',
+
+                        _A: 'hidden'
+
+                    },
+                    {
+                        
+                        _E: 'input',
+
+                        _T: 'text',
+
+                        _N: 'attachment',
+
+                        _C: 'form-control',
+
+                        _V: 'no attachment',
+
+                        _A: 'hidden'
+
+                    }
                    
-            ]
+                ]
 
         data =  {
-                        modalTitle: 'Require Clearance',
-                        
-                        modalContent: content,
-                        
-                        buttonSubmit:  'Save',
-                        
-                        buttonCancel: 'Close',
-                        
-                        url: '/UNIV/INSERT',
-                        
-                        v1: 'clearance_requirements',
-                        
-                        v2: 'Clearance requirement added successfully.',
-                        
-                        v3: '',
-                        
-                        v4: ''
+
+                    modalTitle: 'Require Clearance',
+                    
+                    modalContent: content,
+                    
+                    buttonSubmit:  'Save',
+                    
+                    buttonCancel: 'Close',
+                    
+                    url: '/UNIV/INSERT',
+                    
+                    v1: 'clearance_sheet_details',
+                    
+                    v2: 'Clearance requirement added successfully.',
+                    
+                    v3: '',
+                    
+                    v4: '',
+
+                    v5: '',
+
+                    mi: multiInput,
+
                 }
 
-        __BUILDER(data,'modal_univ_lg');
-
-        // // PREPARE FETCHING DATA FOR OPTION
-        // _IV = 'id';
-
-        // _OV = 'name';
-
-        // d =  JSON.stringify({
-
-        //     table:'department_list',
-
-        //     column: [_OV,_IV]
-
-        // })
-
-        // encyptedData1 = encryptData(d,hp);
-
-        // d =  JSON.stringify({
-
-        //     table:'year_lvl',
-
-        //     column: [_OV,_IV]
-
-        // })
-
-        // encyptedData2 = encryptData(d,hp);
-
-        // data = [
-        //         {
-        //                 _E: 'option-fetch-value',
-
-        //                 _U: '/UNIV/FETCHDATA/',
-
-        //                 _ED: encyptedData2,
-
-        //                 _I: 'txtYear',
-
-        //                 _IV: _IV,
-
-        //                 _OV: _OV
-        //         },
-        //         {
-        //                 _E: 'option-selected-value',
-
-        //                 _FS: 'txtYear'
-        //         },
-        //         {
-        //                 _E: 'option-fetch-value',
-
-        //                 _U: '/UNIV/FETCHDATA/',
-
-        //                 _ED: encyptedData1,
-
-        //                 _I: 'txtDepartment',
-
-        //                 _IV: _IV,
-
-        //                 _OV: _OV
-        //         },
-        //         {
-        //                 _E: 'option-selected-value',
-
-        //                 _FS: 'txtDepartment'
-        //         },
-        // ]
-
-        // __ADDTL(data);
+        __BUILDER(data,'modal_univ');
 
     })
 

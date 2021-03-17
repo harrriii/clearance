@@ -4,21 +4,71 @@
 
   <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <div class="container-fluid mt-1 px-0 py-1">
 
-      <h1 class="h2" style="font-size: 15pt">Students</h1>
+      <div class="row">
+
+        <div class="col-sm-12">
+
+          <div class='t' clas={{$id}}></div>
+
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-1 border-bottom">
+
+            <h1 class="h2" style="font-size: 15pt">Students</h1>
+      
+          </div>
+        
+        </div>
+      
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-12 py-1 pt-0" style="font-size:10pt;">
+
+          <nav aria-label="breadcrumb" >
+          
+            <ol class="breadcrumb py-1" style="background:#F9EFEF">
+          
+              <li class="breadcrumb-item">
+                
+                <a href="/dashboard" class="item-active font-weight-bold">Student List</a>
+            
+              </li>
+          
+              <li class="breadcrumb-item">
+            
+                <a href="/dashboard/librarian/students/sheets" class="text-secondary">Student Sheets</a>
+            
+              </li>
+
+              <li class="breadcrumb-item">
+            
+                <a href="/dashboard/librarian/students/required"  class="text-secondary">Required Students</a>
+            
+              </li>
+
+              <li class="breadcrumb-item">
+            
+                <a href="/dashboard/librarian/students/completed"  class="text-secondary">Completed</a>
+            
+              </li>
+          
+            </ol>
+        
+          </nav>
+
+        </div>
+
+      </div>
 
     </div>
-
-    <div class='t' clas={{$id}}></div>
 
     @if ($selectedFilter)
 
       <div class='r' clas={{$selectedFilter}}></div>
     
     @endif
-   
-
 
     <div class="container-fluid" >
 
@@ -64,31 +114,13 @@
 
       <div class="col-sm-10 text-right mr-0 pr-0">
 
-        <label class="mt-2 font-weight-bold" style="font-size: 9pt;">Filter</label>
+        <label class="mt-2 font-weight-bold" style="font-size: 9pt;">Search</label>
 
       </div>
 
       <div class="col-sm-2 pb-2">
 
-        <select class="form-control __filter" style="font-size: 9pt;" id="txtFilter">
-
-          <option value="*" >All</option>
-          
-          @foreach ($filter as $f)
-
-            @if ($selectedFilter == $f->id)
-
-              <option value="{{$f->id}}" selected>{{$f->name}}</option>
-                
-            @else
-
-              <option value="{{$f->id}}">{{$f->name}}</option>
-
-            @endif
-
-          @endforeach
-        
-        </select>
+        <input type="text" class="form-control" style="font-size:9pt;"">
 
       </div>
 
@@ -105,18 +137,6 @@
             <thead>
     
               <tr>
-                
-                <th class="text-center py-2" style="font-size: 9pt !important;" >
-                  
-                  <div class="custom-control custom-checkbox">
-
-                    <input type="checkbox" class="custom-control-input" id="chkAll">
-
-                    <label class="custom-control-label" for="chkAll"> </label>
-
-                  </div>
-
-                </th>
 
                 <th class="text-center py-2" style="font-size: 9pt !important;" >No</th>
 
@@ -144,25 +164,13 @@
 
                 <tr>
         
-                  <td style="font-size: 8pt !important;" class="text-center py-1">
-                    
-                    <div class="custom-control custom-checkbox">
+                  <td style="font-size: 8pt !important;" class="text-center py-2">{{$count}}</td>
 
-                      <input type="checkbox" class="custom-control-input chk" id="chk{{$count}}">
-  
-                      <label class="custom-control-label" for="chk{{$count}}"> </label>
-  
-                    </div>
+                  <td style="font-size: 8pt !important;" class="text-center py-2">{{$d->student_id}}</td>
 
-                  </td>
-                  
-                  <td style="font-size: 8pt !important;" class="text-center py-1">{{$count}}</td>
+                  <td style="font-size: 8pt !important;" class="text-center py-2">{{$d->firstname. ' ' .$d->middlename. ' ' .$d->lastname}}</td>
 
-                  <td style="font-size: 8pt !important;" class="text-center py-1">{{$d->student_id}}</td>
-
-                  <td style="font-size: 8pt !important;" class="text-center py-1">{{$d->firstname. ' ' .$d->middlename. ' ' .$d->lastname}}</td>
-
-                  <td style="font-size: 8pt !important;" class="text-center py-1">{{$d->name}}</td>
+                  <td style="font-size: 8pt !important;" class="text-center py-2">{{$d->name}}</td>
 
                   {{-- <td class="text-center py-1">
 
@@ -190,21 +198,6 @@
       
     </div>
     
-    <div class="row pt-2">
- 
-      <div class="col-sm-10"></div>
- 
-      <div class="col-sm-2 text-right">
- 
-        <button type="button" class="btn text-light pb-3 pt-0 __add" disabled style="font-size:9pt; background:#7A353C; height:20px; width:80px">
- 
-          Require Clearance
- 
-        </button>
-   
-      </div>
-   
-    </div>
    
     @include('inc\modal\modals') 
   
