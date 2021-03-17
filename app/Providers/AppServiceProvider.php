@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if ($this->app->isLocal()) 
         {
-           $test = 'hel';
+         
         } 
         else 
         {
