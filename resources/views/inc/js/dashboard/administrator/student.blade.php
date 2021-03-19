@@ -353,7 +353,6 @@
 
     $('body').on('click', '.__delete', function () {
 
-       
 
         code = $(this).attr('code');
 

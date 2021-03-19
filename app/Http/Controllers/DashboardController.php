@@ -80,7 +80,7 @@ class DashboardController extends Controller
 
         $id = Auth::user()->id;
 
-        if( $role == 'Staff' ){
+        if( $role == 'Administrator' ){
 
             $t =    'campus_list';
 
@@ -91,7 +91,7 @@ class DashboardController extends Controller
 
             $data = library::__FETCHDATA($t,$c);
 
-            return view('pages/dashboard/staff/campus', compact('role','id','data'));
+            return view('pages/dashboard/administrator/campus', compact('role','id','data'));
 
         }
 
@@ -585,7 +585,37 @@ class DashboardController extends Controller
         if($role == 'Staff')
         {
 
-            return view('pages/dashboard/staff/templates',compact('role','id'));
+            $role = $this->getRole();
+
+            $id = Auth::user()->id;
+
+            if( $role == 'Staff' ){
+
+                $t =    'clearance_batch';
+
+                $c =    [
+                            'clearance_batch.id as id',
+                            'startDate',
+                            'endDate',
+                            'users.name',
+                            'clearance_batch.startedBy as started',
+                            'clearance_batch.campus as campus',
+                            'campus_list.name as campusName',
+                            'status'
+                        ];
+            
+                $j =    [
+                            ['users','users.id','=','clearance_batch.startedBy'],
+                            ['campus_list','campus_list.id','=','clearance_batch.campus'],
+
+                        ];
+
+                $data = library::__FETCHDATA($t,$c,$j);
+
+                return view('pages/dashboard/staff/clearance', compact('role','id','data'));
+
+            }
+
 
         }
 

@@ -94,7 +94,7 @@
 
                   <td class="text-center py-1">
 
-                    <a style="color:#7A353C;" code={{$d->id}} name={{$d->name}} class="a_icon __edit"><i data-feather="edit" class="icon"></i></a>
+                    <a style="color:#7A353C;" code={{$d->id}} name="{{$d->name}}" class="a_icon __edit"><i data-feather="edit" class="icon"></i></a>
         
                   </td>
         

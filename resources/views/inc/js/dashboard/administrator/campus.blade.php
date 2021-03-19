@@ -16,11 +16,39 @@
 
         var name = $(this).attr('name');
 
+        
+
         content = [
+
                     {
+
                         _E: 'label',
 
                         _C: 'form-label',
+
+                        _V: 'Campus Id',
+
+                    },
+                    {
+                        _E: 'input',
+
+                        _T: 'text',
+
+                        _I: 'txtDepartment',
+
+                        _N: 'id',
+
+                        _C: 'form-control',
+
+                        _A: 'Readonly',
+
+                        _V: code,
+
+                    },
+                    {
+                        _E: 'label',
+
+                        _C: 'form-label pt-2',
 
                         _V: 'Campus name',
 
@@ -41,6 +69,15 @@
                    
             ]
 
+
+        id = [code];
+
+        d = JSON.stringify({
+            id
+        })
+
+        id = encryptData(d,hp);
+
         data =  {
                         modalTitle: 'Edit Campus',
                         
@@ -56,9 +93,11 @@
                         
                         v2: 'Campus updated successfully.',
                         
-                        v3: code,
+                        v3: id,
                         
-                        v4: ''
+                        v4: '',
+
+                        mi:''
                 }
 
         __BUILDER(data);
@@ -110,7 +149,10 @@
                         
                         v3: '',
                         
-                        v4: ''
+                        v4: '',
+
+                        mi: '',
+
                 }
 
         __BUILDER(data);
@@ -119,6 +161,14 @@
     $('body').on('click', '.__delete', function () {
 
         code = $(this).attr('code');
+
+        id = [code];
+
+        d = JSON.stringify({
+            _D: id
+        })
+
+        id = encryptData(d,hp);
 
         content = [
                     {
@@ -147,7 +197,7 @@
                         
                         v2: 'Campus deleted successfully.',
                         
-                        v3: code,
+                        v3: id,
                         
                         v4: ''
                 }

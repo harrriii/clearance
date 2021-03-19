@@ -50,6 +50,18 @@
 
             </li>
 
+            <li class="nav-item py-0">
+
+              <a class="nav-link text-secondary py-1 ml-1" style="font-size: 9pt;" href="/dashboard/campus" id="nv_dashboard">
+
+                <i data-feather="clipboard"></i>
+
+                Campus 
+
+              </a>
+
+            </li>
+
           </ul>
   
           {{-- <h6 class="font-weight-bold sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted" style="font-size: 8pt;">

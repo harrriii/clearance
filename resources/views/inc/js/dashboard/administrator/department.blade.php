@@ -16,12 +16,46 @@
 
         var name = $(this).attr('name');
 
+        id = [code];
+
+        d = JSON.stringify({
+            id
+        })
+
+        id = encryptData(d,hp);
+
         content = [
                     {
 
                         _E: 'label',
 
                         _C: 'form-label',
+
+                        _V: 'Department Id',
+
+                    },
+                    {
+
+                        _E: 'input',
+
+                        _T: 'text',
+
+                        _I: 'txtDepartment',
+
+                        _N: 'id',
+
+                        _C: 'form-control',
+                        
+                        _A: 'ReadOnly',
+
+                        _V: code,
+
+                    },
+                    {
+
+                        _E: 'label',
+
+                        _C: 'form-label pt-2',
 
                         _V: 'Department',
 
@@ -40,6 +74,7 @@
                         _V: name,
 
                     },
+                    
 
                 ]
 
@@ -58,7 +93,7 @@
                         
                         v2: 'Department updated successfully.',
                         
-                        v3: code,
+                        v3: id,
                         
                         v4: ''
                 }
