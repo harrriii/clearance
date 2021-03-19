@@ -137,7 +137,7 @@
 
               <button type="submit" class="btn text-light pb-3 pt-0 " style="font-size:9pt; background:#7A353C; height:20px; width:80px">
  
-                Add
+                Import
        
               </button>
 

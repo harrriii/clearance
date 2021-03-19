@@ -547,7 +547,7 @@
 
 // TEMPLATES
 
-    
+
 
 
 
@@ -629,6 +629,17 @@ function addSearch(txtSearch, table){
 }
 
 
+
+$('.__printReport').click('',function ()  {
+    alert('Currently not available.')
+
+})
+
+
+$('.working').click('',function ()  {
+
+    alert('Currently not available.')
+    })
 
 
 

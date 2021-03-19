@@ -95,64 +95,94 @@
       <div class="row">
     
         <div class="col-sm-12 p-0">
-      
-          <div class="table-responsive-lg " style="white-space:nowrap;">
-      
-            <table class="table table-striped">
-      
-                <thead>
-        
-                    <tr>
-        
-                    <th class="text-center py-1" style="font-size: 9pt !important;" >No</th>
-                    
-                    <th class="text-center py-1" style="font-size: 9pt !important;" >Department</th>
+          
+          @php
 
-                    <th class="text-center py-1" style="font-size: 9pt !important;" >Signed by</th>
-                    
-                    <th class="text-center py-1" style="font-size: 9pt !important;" >Status</th>
-                    
-                    <th class="text-center py-1" style="font-size: 9pt !important;" >Remarks</th>
-                    
-                    {{-- <th class="text-center py-1" style="font-size: 9pt !important;" ></th> --}}
+              $count=1;
+              
+          @endphp
+
+
+
+          @if ($sheetNo != 0)
+          
+            @if (count($data)==0)
+
+              <div class="alert alert-secondary">
+
+                <label class="text-muted" style="font-size:9pt;">Your clearance sheet is now visible. Please check this page regularly.</label>
+      
+              </div>
                 
-                    </tr>
-                
-                </thead>
-            
-                <tbody>
-                    
-                    @php
-                        $count=1;
-                    @endphp
+            @else
+
+              <div class="table-responsive-lg " style="white-space:nowrap;">
+
+                <table class="table table-striped">
+          
+                  <thead>
+          
+                      <tr>
+          
+                      <th class="text-center py-1" style="font-size: 9pt !important;" >No</th>
+                      
+                      <th class="text-center py-1" style="font-size: 9pt !important;" >Department</th>
+
+                      <th class="text-center py-1" style="font-size: 9pt !important;" >Signed by</th>
+                      
+                      <th class="text-center py-1" style="font-size: 9pt !important;" >Status</th>
+                      
+                      <th class="text-center py-1" style="font-size: 9pt !important;" >Remarks</th>
+                      
+                      {{-- <th class="text-center py-1" style="font-size: 9pt !important;" ></th> --}}
+                  
+                      </tr>
+                  
+                  </thead>
+              
+                  <tbody>
 
                     @foreach ($data as $d)
 
-                    <td style="font-size: 8pt !important;" class="text-center py-1">{{$count++}}</td>
+                      <td style="font-size: 8pt !important;" class="text-center py-1">{{$count++}}</td>
 
-                    <td style="font-size: 8pt !important;" class="text-center py-1">{{$d->departmentname}}</td>
+                      <td style="font-size: 8pt !important;" class="text-center py-1">{{$d->departmentname}}</td>
 
-                    <td style="font-size: 8pt !important;" class="text-center py-1">{{$d->name}}</td>
+                      <td style="font-size: 8pt !important;" class="text-center py-1">{{$d->name}}</td>
 
-                    <td style="font-size: 8pt !important;" class="text-center py-1">{{$d->status}}</td>
+                      <td style="font-size: 8pt !important;" class="text-center py-1">{{$d->status}}</td>
 
-                    <td style="font-size: 8pt !important;" class="text-center py-1">{{$d->remarks}}</td>
+                      <td style="font-size: 8pt !important;" class="text-center py-1">{{$d->remarks}}</td>
 
-                    {{-- <td class="text-center py-1">
-            
-                        <a style="color:#7A353C;" code={{$d->id}} name="{{$d->name}}" class="a_icon __edit"><i data-feather="edit" class="icon"></i></a>
-            
-                        <a style="color:#7A353C;" code={{$d->id}}  class="a_icon __delete"><i data-feather="trash-2" class="icon"></i></a>
-            
-                    </td>
-                         --}}
+                      {{-- <td class="text-center py-1">
+              
+                          <a style="color:#7A353C;" code={{$d->id}} name="{{$d->name}}" class="a_icon __edit"><i data-feather="edit" class="icon"></i></a>
+              
+                          <a style="color:#7A353C;" code={{$d->id}}  class="a_icon __delete"><i data-feather="trash-2" class="icon"></i></a>
+              
+                      </td>
+                          --}}
                     @endforeach
 
-                </tbody>
+                  </tbody>
+
+                </table>
+        
+              </div>
+           
+            @endif
+                      
+          @else
+
+            <div class="alert alert-secondary">
+
+              <label class="text-muted" style="font-size:9pt;">Please update your clearance sheet.</label>
+
     
-            </table>
-    
-          </div>
+            </div>
+
+          @endif
+                
     
         </div>
         

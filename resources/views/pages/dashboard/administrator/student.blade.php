@@ -36,7 +36,7 @@
           
               <li class="breadcrumb-item">
             
-                <a href="/dashboard/student/sheets" class="text-secondary">Student Sheets</a>
+                <a href="/dashboard/student/sheets" class="text-secondary"></a>
             
               </li>
           
@@ -137,7 +137,7 @@
 
                   <td class="text-center py-1">
         
-                    <a style="color:#7A353C;" code="{{$d->student_id}}" fname="{{$d->firstname}}" mname="{{$d->middlename}}" lname="{{$d->lastname}}" class="a_icon __edit"><i data-feather="edit" class="icon"></i></a>
+                    <a style="color:#7A353C;" code="{{$d->student_id}}" year="{{$d->year}}" fname="{{$d->firstname}}" mname="{{$d->middlename}}" lname="{{$d->lastname}}" class="a_icon __edit"><i data-feather="edit" class="icon"></i></a>
         
                     <a style="color:#7A353C;" code="{{$d->student_id}}"  class="a_icon __delete"><i data-feather="trash-2" class="icon"></i></a>
         
@@ -157,7 +157,7 @@
       
     </div>
     
-    <div class="row pt-2">
+    {{-- <div class="row pt-2">
  
       <div class="col-sm-10"></div>
  
@@ -172,7 +172,7 @@
    
       </div>
    
-    </div>
+    </div> --}}
    
     @include('inc\modal\modals') 
   

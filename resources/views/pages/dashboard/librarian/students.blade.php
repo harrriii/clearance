@@ -120,7 +120,7 @@
 
       <div class="col-sm-2 pb-2">
 
-        <input type="text" class="form-control" style="font-size:9pt;"">
+        <input type="text" class="form-control" id="studentSearch" style="font-size:9pt;"">
 
       </div>
 
@@ -132,7 +132,7 @@
     
         <div class="table-responsive-lg" style="white-space:nowrap;">
     
-          <table class="table table-striped">
+          <table class="table table-striped" id="studentTable">
     
             <thead>
     

@@ -8,8 +8,9 @@
         
         $('#nv_schedule').removeClass('active');
 
-    })
+        addSearch('studentSearch','studentTable');
 
+<<<<<<< HEAD
     $('.__complete').click('',function ()  {
     })
 <<<<<<< HEAD
@@ -72,7 +73,14 @@
                         _A: 'hidden'
 
 =======
+=======
+        addSearch('requiredSearch','requiredTable');
 
+        addSearch('completedSearch','completedTable');
+>>>>>>> 1dee28c6897ecd21f57624c543b4568252298d22
+
+
+    })
 
     $('.__revoke').click('',function ()  {
 
@@ -110,8 +118,11 @@
                             _C: 'form-label',
 
                             _V: 'Do you want to revoke this clearance requirement?'
+<<<<<<< HEAD
 
 >>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
+=======
+>>>>>>> 1dee28c6897ecd21f57624c543b4568252298d22
                     }
                    
                 ]
@@ -146,163 +157,269 @@
 
     })
 
-    $('.__edit').click('',function ()  {
+    $('.__complete').click('',function ()  {
 
-        var code = $(this).attr('code');
+        multiplePk = [];
 
-        var year = $(this).attr('year');
+        $('.chk').each(function(i, obj) {
 
-        var name = $(this).attr('name');
+            if($(this).prop('checked')){
+
+                multiplePk.push($(this).attr('sheetid'));
+
+            }
+
+        });
+
+        d = JSON.stringify({
+
+            multiplePk
+
+        })
+
+        sheets = encryptData(d,hp);
+
+        d = JSON.stringify({
+
+                            data:   [
+                                        ['status','Completed']
+                                    ]
+
+        })
+
+        v4Data = encryptData(d,hp);
 
         content = [
-                    {
 
+                    {
                         _E: 'label',
 
-                        _C: 'form-label',
+                        _C: 'form-label font-weight-bold',
 
-                        _V: 'Department',
+                        _V: 'Attachment'
 
                     },
                     {
 
-                        _E: 'select',
+                        _E: 'input',
 
-                        _C: 'custom-select form-control',
+                        _T: 'file',
 
-                        _I: 'txtDepartment',
+                        _I: 'txtFilename',
 
-                        _N: 'department',
-                    
-                    },
+                        _N: 'attachment',
+
+                        _C: 'custom-file-input',
+
+                        _CL: 'Choose File...',
+
+                    }, 
                     {
-
                         _E: 'label',
 
-                        _C: 'form-label mt-2',
+                        _C: 'form-label font-weight-bold',
 
-                        _V: 'Year',
+                        _V: 'Remarks'
 
                     },
                     {
 
-                        _E: 'select',
+                        _E: 'textarea',
 
-                        _C: 'custom-select form-control',
+                        _I: 'txtRemarks',
 
-                        _I: 'txtYear',
+                        _N: 'remarks',
 
-                        _N: 'year',
+                        _P: 'Enter clearance remarks here..',
+
+                        _C: 'form-control',
+
+                        _R: '4'
 
                     },
-                   
-            ]
+                
+                ]
 
         data =  {
-                        modalTitle: 'Edit Clearance Batch',
+                        modalTitle: 'Complete Clearance',
                         
                         modalContent: content,
                         
-                        buttonSubmit:  'Save',
+                        buttonSubmit:  'Confirm',
                         
                         buttonCancel: 'Close',
                         
                         url: '/UNIV/EDIT',
                         
-                        v1: 'clearance_requirements',
+                        v1: 'clearance_sheet_details',
                         
-                        v2: 'Clearance requirement updated successfully.',
+                        v2: 'Clearance requirement marked as completed successfully.',
                         
-                        v3: code,
+                        v3: sheets,
                         
-                        v4: ''
+                        v4: v4Data,
+
+                        v5: '/upload/librarian/',
+
+                        v6: 'multipart/form-data',
                 }
 
         __BUILDER(data);
 
-        // PREPARE FETCHING DATA FOR OPTION
-        _IV = 'id';
-
-        _OV = 'name';
-
-        d =  JSON.stringify({
-
-            table:'department_list',
-
-            column: [_OV,_IV]
-
-        })
-
-        encyptedData1 = encryptData(d,hp);
-
-        d =  JSON.stringify({
-
-            table:'year_lvl',
-
-            column: [_OV,_IV]
-
-        })
-
-        encyptedData2 = encryptData(d,hp);
-
-        data = [
-                {
-                        _E: 'option-fetch-value',
-
-                        _U: '/UNIV/FETCHDATA/',
-
-                        _ED: encyptedData2,
-
-                        _I: 'txtYear',
-
-                        _IV: _IV,
-
-                        _OV: _OV
-                },
-                {
-                        _E: 'option-selected-value',
-
-                        _FS: 'txtYear',
-
-                        _SV: year,
-                },
-                {
-                        _E: 'option-fetch-value',
-
-                        _U: '/UNIV/FETCHDATA/',
-
-                        _ED: encyptedData1,
-
-                        _I: 'txtDepartment',
-
-                        _IV: _IV,
-
-                        _OV: _OV
-                },
-                {
-                        _E: 'option-selected-value',
-
-                        _FS: 'txtDepartment',
-
-                        _SV: name,
-                },
-        ]
-
-        __ADDTL(data);
- 
     })
+
+    // $('.__edit').click('',function ()  {
+
+    //     var code = $(this).attr('code');
+
+    //     var year = $(this).attr('year');
+
+    //     var name = $(this).attr('name');
+
+    //     content = [
+    //                 {
+
+    //                     _E: 'label',
+
+    //                     _C: 'form-label',
+
+    //                     _V: 'Department',
+
+    //                 },
+    //                 {
+
+    //                     _E: 'select',
+
+    //                     _C: 'custom-select form-control',
+
+    //                     _I: 'txtDepartment',
+
+    //                     _N: 'department',
+                    
+    //                 },
+    //                 {
+
+    //                     _E: 'label',
+
+    //                     _C: 'form-label mt-2',
+
+    //                     _V: 'Year',
+
+    //                 },
+    //                 {
+
+    //                     _E: 'select',
+
+    //                     _C: 'custom-select form-control',
+
+    //                     _I: 'txtYear',
+
+    //                     _N: 'year',
+
+    //                 },
+                   
+    //         ]
+
+    //     data =  {
+    //                     modalTitle: 'Edit Clearance Batch',
+                        
+    //                     modalContent: content,
+                        
+    //                     buttonSubmit:  'Save',
+                        
+    //                     buttonCancel: 'Close',
+                        
+    //                     url: '/UNIV/EDIT',
+                        
+    //                     v1: 'clearance_requirements',
+                        
+    //                     v2: 'Clearance requirement updated successfully.',
+                        
+    //                     v3: code,
+                        
+    //                     v4: ''
+    //             }
+
+    //     __BUILDER(data);
+
+    //     // PREPARE FETCHING DATA FOR OPTION
+    //     _IV = 'id';
+
+    //     _OV = 'name';
+
+    //     d =  JSON.stringify({
+
+    //         table:'department_list',
+
+    //         column: [_OV,_IV]
+
+    //     })
+
+    //     encyptedData1 = encryptData(d,hp);
+
+    //     d =  JSON.stringify({
+
+    //         table:'year_lvl',
+
+    //         column: [_OV,_IV]
+
+    //     })
+
+    //     encyptedData2 = encryptData(d,hp);
+
+    //     data = [
+    //             {
+    //                     _E: 'option-fetch-value',
+
+    //                     _U: '/UNIV/FETCHDATA/',
+
+    //                     _ED: encyptedData2,
+
+    //                     _I: 'txtYear',
+
+    //                     _IV: _IV,
+
+    //                     _OV: _OV
+    //             },
+    //             {
+    //                     _E: 'option-selected-value',
+
+    //                     _FS: 'txtYear',
+
+    //                     _SV: year,
+    //             },
+    //             {
+    //                     _E: 'option-fetch-value',
+
+    //                     _U: '/UNIV/FETCHDATA/',
+
+    //                     _ED: encyptedData1,
+
+    //                     _I: 'txtDepartment',
+
+    //                     _IV: _IV,
+
+    //                     _OV: _OV
+    //             },
+    //             {
+    //                     _E: 'option-selected-value',
+
+    //                     _FS: 'txtDepartment',
+
+    //                     _SV: name,
+    //             },
+    //     ]
+
+    //     __ADDTL(data);
+ 
+    // })
 
 
     $('.chk').click('',function ()  {
 
-
-
         count = 0;
 
-
-        
         $('.chk').each(function(i, obj) {
-
 
             if($(this).prop('checked')){
 
@@ -316,13 +433,24 @@
             $('.__add').removeAttr('disabled');
 
             $('.__revoke').removeAttr('disabled');
-           
+
+            $('.__complete').removeAttr('disabled');
+
+            $('.__printReport').removeAttr('disabled');
+
+
+            
+
         }
         else{
 
             $('.__add').attr('disabled',true);
 
             $('.__revoke').attr('disabled',true);
+
+            $('.__complete').attr('disabled',true);
+
+            $('.__printReport').attr('disabled',true);
 
         }
 
@@ -340,6 +468,11 @@
 
             $('.__revoke').removeAttr('disabled');
 
+            $('.__complete').removeAttr('disabled');
+
+            $('.__printReport').removeAttr('disabled');
+
+
         }
         else{
             
@@ -348,6 +481,11 @@
             $('.__add').attr('disabled',true);
 
             $('.__revoke').attr('disabled',true);
+
+            $('.__complete').attr('disabled',true);
+
+            $('.__printReport').attr('disabled',true);
+
 
         }
 

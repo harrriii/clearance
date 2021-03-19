@@ -386,51 +386,9 @@ class __UNIVERSAL extends Controller
 
         $ARR = array();
 
-        if( $TEMP['mi'] === "undefined" )
+        if( isset($TEMP['mi']) )
         {
-            // CHECK IF THERES INPUT THAT MATCHES COLUMN NAME
-            for ($i=1; $i < count($TABLE_COLUMNS); $i++) { 
 
-                if(in_array($TEMP[$TABLE_COLUMNS[$i]],$TABLE_COLUMNS))
-                {
-
-                    return redirect()->back()->with('fail-message', 'Something went wrong!');
-
-                }
-                else
-                {
-
-                    if($request->hasFile($TABLE_COLUMNS[$i]))
-                    {
-
-                        $file = $request->file($TABLE_COLUMNS[$i]);
-
-                        $ARR[$TABLE_COLUMNS[$i]] = $file->getClientOriginalName();
-
-                        $fileColumn = $TABLE_COLUMNS[$i];
-
-                    }
-                    else{
-
-                        $ARR[$TABLE_COLUMNS[$i]] = $TEMP[$TABLE_COLUMNS[$i]];
-
-                    }
-
-                }
-            
-            }
-
-            library::__STORE($TABLENAME,$ARR);
-           
-            if($fileColumn){
-
-                $this->__UPLOAD($request->file($fileColumn),$TEMP['v5']);
-
-            }
-            
-        }
-        else
-        {
             $DATA = base64_decode($TEMP['mi']);
 
             $JSON = $this->cryptoJsAesDecrypt('mlqu-hash-password-2021',$DATA);
@@ -484,6 +442,52 @@ class __UNIVERSAL extends Controller
                 }
 
             }
+            
+            
+        }
+        else
+        {
+            // CHECK IF THERES INPUT THAT MATCHES COLUMN NAME
+            for ($i=1; $i < count($TABLE_COLUMNS); $i++) { 
+
+                // dd($TEMP[$TABLE_COLUMNS[$i]]);
+
+                if(in_array($TEMP[$TABLE_COLUMNS[$i]],$TABLE_COLUMNS))
+                {
+
+                    return redirect()->back()->with('fail-message', 'Something went wrong!');
+
+                }
+                else
+                {
+
+                    if($request->hasFile($TABLE_COLUMNS[$i]))
+                    {
+
+                        $file = $request->file($TABLE_COLUMNS[$i]);
+
+                        $ARR[$TABLE_COLUMNS[$i]] = $file->getClientOriginalName();
+
+                        $fileColumn = $TABLE_COLUMNS[$i];
+
+                    }
+                    else{
+
+                        $ARR[$TABLE_COLUMNS[$i]] = $TEMP[$TABLE_COLUMNS[$i]];
+
+                    }
+
+                }
+            
+            }
+
+            library::__STORE($TABLENAME,$ARR);
+           
+            if($fileColumn){
+
+                $this->__UPLOAD($request->file($fileColumn),$TEMP['v5']);
+
+            }
 
         }
 
@@ -503,6 +507,8 @@ class __UNIVERSAL extends Controller
     public function __EDIT(Request $request)
     {
 
+        $fileColumn = '';
+
         $TEMP = json_encode($request->all());
          
         $TEMP = json_decode($TEMP);
@@ -517,16 +523,17 @@ class __UNIVERSAL extends Controller
     
         $DATA = base64_decode($TEMP['v3']);
 
+       
         $JSON = $this->cryptoJsAesDecrypt('mlqu-hash-password-2021',$DATA);
 
         $w = 0;
 
         foreach ($JSON as $key => $value) {
 
+
             for ($i=0; $i < count($value); $i++) { 
 
                 $w++;
-
 
                 $ARR[$TABLE_COLUMNS[0]] = $value[$i];
 
@@ -549,8 +556,22 @@ class __UNIVERSAL extends Controller
         
                                
                                 if($TABLE_COLUMNS[$x] == $v[0]){
+
+                                    if($request->hasFile($TABLE_COLUMNS[$x]))
+                                    {
+                
+                                        $file = $request->file($TABLE_COLUMNS[$x]);
+                
+                                        $ARR[$TABLE_COLUMNS[$x]] = $file->getClientOriginalName();
+                
+                                        $fileColumn = $TABLE_COLUMNS[$x];
+                
+                                    }
+                                    else
+                                    {
         
-                                    $ARR[$TABLE_COLUMNS[$x]] = $v[1];
+                                        $ARR[$TABLE_COLUMNS[$x]] = $v[1];
+                                    }
                 
                                 }
 
@@ -561,28 +582,47 @@ class __UNIVERSAL extends Controller
                     }
                     else
                     {
-        
+                        
                         if( in_array($request[$TABLE_COLUMNS[$x]], $TABLE_COLUMNS)){
                             
                             return redirect()->back()->with('fail-message','Something went wrong!');
                         }
                         else{
-        
-                            $ARR[$TABLE_COLUMNS[$x]] = $request[$TABLE_COLUMNS[$x]];
-                            
-                        }
 
-                        
+                            if($request->hasFile($TABLE_COLUMNS[$x]))
+                            {
+        
+                                $file = $request->file($TABLE_COLUMNS[$x]);
+        
+                                $ARR[$TABLE_COLUMNS[$x]] = $file->getClientOriginalName();
+        
+                                $fileColumn = $TABLE_COLUMNS[$x];
+        
+                            }
+                            else
+                            {
+        
+                                $ARR[$TABLE_COLUMNS[$x]] = $TEMP[$TABLE_COLUMNS[$x]];
+        
+                            }
+        
+                        }
 
                     }
               
                 }
 
-                // dd($ARR);
                 library::__UPDATE($TABLENAME,$ARR,$TABLE_COLUMNS[0]);
+
+               
+
+                if($fileColumn){
+
+                    $this->__UPLOAD($request->file($fileColumn),$TEMP['v5']);
+    
+                }
               
             }
-            // dd($w);
 
         }
 

@@ -58,7 +58,7 @@ Route::get('/dashboard/librarian/students/sheets', [DashboardController::class, 
 
 Route::get('/dashboard/librarian/students/required', [DashboardController::class, 'RequiredStudents']);
 
-Route::get('/dashboard/librarian/students/completed', [DashboardController::class, 'RequiredStudents']);
+Route::get('/dashboard/librarian/students/completed', [DashboardController::class, 'CompletedClearance']);
 
 Route::get('/dashboard/department', [DashboardController::class, 'department']);
 
@@ -69,3 +69,5 @@ Route::get('/dashboard/import', [DashboardController::class, 'importFile']);
 Route::post('/dashboard/import', [DashboardController::class, 'importExcel']);
 
 Route::get('/', [PageController::class, 'index']);
+
+Route::post('/dashboard/clearance/student/updatesheet', [DashboardController::class, 'updateSheet']);
