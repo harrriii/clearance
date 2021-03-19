@@ -831,7 +831,8 @@ class DashboardController extends Controller
                 ];
 
         $w =    [
-                    ['student_id','=', $studentId]
+                    ['student_id','=', $studentId],
+                    ['batch','=', $clearanceBatch]
                 ];
 
         $sheetNo = library::__FETCHDATA($t,$c,null,$w);
