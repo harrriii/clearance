@@ -114,8 +114,29 @@
                         _A: 'hidden'
 
                     },
+                    {
+                        _E: 'input',
+
+                        _T: 'text',
+
+                        _V: code,
+
+                        _A: 'hidden',
+
+                        _I: 'txtCampus',
+
+                        _N: 'id',
+                    },
                    
             ]
+
+        id = [code];
+
+        d = JSON.stringify({
+            id
+        })
+
+        id = encryptData(d,hp);
 
         data =  {
                         modalTitle: 'Edit Clearance Batch',
@@ -132,7 +153,7 @@
                         
                         v2: 'Clearance batch updated successfully.',
                         
-                        v3: code,
+                        v3: id,
                         
                         v4: ''
                 }
@@ -318,7 +339,8 @@
                         
                         v3: '',
                         
-                        v4: ''
+                        v4: '',
+                        mi:''
                 }
 
         __BUILDER(data);
@@ -382,6 +404,14 @@
 
         code = $(this).attr('code');
 
+        id = [code];
+
+        d = JSON.stringify({
+            _D: id
+        })
+
+        id = encryptData(d,hp);
+
         content = [
                     {
                             _E: 'label',
@@ -409,7 +439,7 @@
                         
                         v2: 'Clearance batch deleted successfully.',
                         
-                        v3: code,
+                        v3: id,
                         
                         v4: ''
                 }

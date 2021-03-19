@@ -139,7 +139,7 @@
 
     @include('inc\js\reuseable') 
 
-    @include('inc\js\dashboard\staff\campus') 
+    @include('inc\js\dashboard\administrator\campus') 
 
   @endsection
 
