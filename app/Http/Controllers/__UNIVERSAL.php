@@ -408,7 +408,6 @@ class __UNIVERSAL extends Controller
                         $ARR[$TABLE_COLUMNS[$i]] = $file->getClientOriginalName();
 
                         $fileColumn = $TABLE_COLUMNS[$i];
-<<<<<<< HEAD
 
                     }
                     else{
@@ -417,16 +416,6 @@ class __UNIVERSAL extends Controller
 
                     }
 
-=======
-
-                    }
-                    else{
-
-                        $ARR[$TABLE_COLUMNS[$i]] = $TEMP[$TABLE_COLUMNS[$i]];
-
-                    }
-
->>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
                 }
             
             }
@@ -447,7 +436,6 @@ class __UNIVERSAL extends Controller
             $JSON = $this->cryptoJsAesDecrypt('mlqu-hash-password-2021',$DATA);
 
             foreach ($JSON['_D'] as $key => $value) {
-<<<<<<< HEAD
 
                 for ($i=1; $i < count($TABLE_COLUMNS); $i++) { 
                   
@@ -491,51 +479,6 @@ class __UNIVERSAL extends Controller
            
                 if($fileColumn){
 
-=======
-
-                for ($i=1; $i < count($TABLE_COLUMNS); $i++) { 
-                  
-                    // check if input = table column
-                    if(in_array($TEMP[$TABLE_COLUMNS[$i]],$TABLE_COLUMNS))
-                    {
-
-                        return redirect()->back()->with('fail-message', 'Something went wrong!');
-
-                    }
-                    else
-                    {
-
-                        if($request->hasFile($TABLE_COLUMNS[$i]))
-                        {
-
-                            $file = $request->file($TABLE_COLUMNS[$i]);
-
-                            $ARR[$TABLE_COLUMNS[$i]] = $file->getClientOriginalName();
-
-                            $fileColumn = $TABLE_COLUMNS[$i];
-
-                        }
-                        else
-                        {
-
-                            if( isset($JSON['_TC']) )
-                            {
-                                $ARR[$JSON['_TC']] = $value;
-                            }
-                           
-                            $ARR[$TABLE_COLUMNS[$i]] = $TEMP[$TABLE_COLUMNS[$i]];
-
-                        }
-
-                    }
-
-                }
-
-                library::__STORE($TABLENAME,$ARR);
-           
-                if($fileColumn){
-
->>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
                     $this->__UPLOAD($request->file($fileColumn),$TEMP['v5']);
 
                 }
@@ -576,34 +519,14 @@ class __UNIVERSAL extends Controller
 
         $JSON = $this->cryptoJsAesDecrypt('mlqu-hash-password-2021',$DATA);
 
-<<<<<<< HEAD
-            if( isset($TEMP['v4']) )
-            {
-=======
         $w = 0;
->>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
 
         foreach ($JSON as $key => $value) {
 
-<<<<<<< HEAD
-                $JSON = $this->cryptoJsAesDecrypt('mlqu-hash-password-2021',$DATA);
-    
-                foreach ($JSON['data'] as $key => $value) {
-                    
-                    if( in_array($value[1], $TABLE_COLUMNS)){
-                        
-                        return redirect()->back()->with('fail-message','Something went wrong!');
-                    }
-                    else{
-=======
             for ($i=0; $i < count($value); $i++) { 
->>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
 
                 $w++;
 
-<<<<<<< HEAD
-                            $ARR[$TABLE_COLUMNS[$i]] = $value[1];
-=======
 
                 $ARR[$TABLE_COLUMNS[0]] = $value[$i];
 
@@ -626,7 +549,6 @@ class __UNIVERSAL extends Controller
         
                                
                                 if($TABLE_COLUMNS[$x] == $v[0]){
->>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
         
                                     $ARR[$TABLE_COLUMNS[$x]] = $v[1];
                 
@@ -637,18 +559,6 @@ class __UNIVERSAL extends Controller
                         }
 
                     }
-<<<<<<< HEAD
-                }
-            }
-            else
-            {
-
-                if( in_array($request[$TABLE_COLUMNS[$i]], $TABLE_COLUMNS)){
-                    
-                    return redirect()->back()->with('fail-message','Something went wrong!');
-                }
-                else{
-=======
                     else
                     {
         
@@ -663,17 +573,10 @@ class __UNIVERSAL extends Controller
                         }
 
                         
->>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
 
                     }
               
                 }
-<<<<<<< HEAD
-            }
-
-        }
-=======
->>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
 
                 // dd($ARR);
                 library::__UPDATE($TABLENAME,$ARR,$TABLE_COLUMNS[0]);
@@ -681,13 +584,8 @@ class __UNIVERSAL extends Controller
             }
             // dd($w);
 
-<<<<<<< HEAD
-        library::__UPDATE($TABLENAME,$ARR,$TABLE_COLUMNS[0]);
-        
-=======
         }
 
->>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
         return redirect()->back()->with('success-message',$TEMP['v2']);
 
     }
