@@ -120,7 +120,7 @@
 
         <div class="col-sm-2 pb-2  text-right" >
 
-          <input type="text" class="form-control" style="font-size:9pt;"">
+          <input type="text" class="form-control" id="requiredSearch" style="font-size:9pt;"">
 
         </div>
 
@@ -132,7 +132,7 @@
     
         <div class="table-responsive-lg" style="white-space:nowrap;">
     
-          <table class="table table-striped">
+          <table class="table table-striped" id="requiredTable">
     
             <thead>
     
@@ -226,7 +226,7 @@
  
         </button>
 
-        <button type="button" class="btn text-light pb-3 pt-0 __add" disabled style="font-size:9pt; background:#7A353C; height:20px; ">
+        <button type="button" class="btn text-light pb-3 pt-0 __complete" disabled style="font-size:9pt; background:#7A353C; height:20px; ">
  
             Complete 
    

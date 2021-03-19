@@ -90,11 +90,11 @@
 
                         v6: 'multipart/form-data',
 
+                        mi: ''
+
 
                                 
                 }
-
-                console.log(data);
 
         __BUILDER(data);
 
@@ -103,6 +103,14 @@
     $('body').on('click', '.__delete', function () {
 
         code = $(this).attr('code');
+
+        id = [code];
+
+        d = JSON.stringify({
+            _D: id
+        })
+
+        id = encryptData(d,hp);
 
         content = [
                     {
@@ -117,7 +125,7 @@
                 ]
 
         data =  {
-                        modalTitle: 'Delete Clearance Requirement',
+                        modalTitle: 'Delete Template',
                         
                         modalContent: content,
                         
@@ -131,9 +139,10 @@
                         
                         v2: 'Template deleted successfully.',
                         
-                        v3: code,
+                        v3: id,
                         
-                        v4: ''
+                        v4: '',
+                    
                 }
 
         __BUILDER(data);

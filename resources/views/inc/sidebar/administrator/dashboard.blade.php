@@ -14,7 +14,7 @@
           
             </h6>
 
-            <li class="nav-item py-0">
+            {{-- <li class="nav-item py-0">
 
               <a class="nav-link text-secondary py-1 ml-1" style="font-size: 9pt;" href="/dashboard/" id="nv_dashboard">
 
@@ -24,7 +24,7 @@
 
               </a>
 
-            </li>
+            </li> --}}
 
             <li class="nav-item py-0">
 
@@ -150,7 +150,7 @@
 
             <li class="nav-item py-0">
 
-              <a class="nav-link text-secondary py-1 ml-1" style="font-size: 9pt;" href="#">
+              <a class="nav-link text-secondary py-1 ml-1 working" style="font-size: 9pt;" href="#">
 
                 <i data-feather="user"></i>
 

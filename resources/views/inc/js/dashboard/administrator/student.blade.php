@@ -12,9 +12,16 @@
 
     $('.__edit').click('',function ()  {
 
-        var code = $(this).attr('code');
+        var studentid = $(this).attr('code');
 
-        var name = $(this).attr('name');
+        var fname = $(this).attr('fname');
+
+        var mname = $(this).attr('mname');
+
+        var lname = $(this).attr('lname');
+
+        var year = $(this).attr('year');
+
 
         content = [
                     {
@@ -23,7 +30,7 @@
 
                         _C: 'form-label',
 
-                        _V: 'Department',
+                        _V: 'Student Id',
 
                     },
                     {
@@ -33,18 +40,113 @@
 
                         _I: 'txtDepartment',
 
-                        _N: 'name',
+                        _N: 'student_id',
 
                         _C: 'form-control',
 
-                        _V: name,
+                        _A: 'Readonly',
+
+                        _V: studentid,
+
+                    },
+                    {
+
+                        _E: 'label',
+
+                        _C: 'form-label pt-2',
+
+                        _V: 'First Name',
+
+                    },
+                    {
+                        _E: 'input',
+
+                        _T: 'text',
+
+                        _I: 'txtFname',
+
+                        _N: 'firstname',
+
+                        _C: 'form-control',
+
+                        _V: fname,
+
+                    },
+                    {
+
+                        _E: 'label',
+
+                        _C: 'form-label pt-2',
+
+                        _V: 'Middle Name',
+
+                    },
+                    {
+                        _E: 'input',
+
+                        _T: 'text',
+
+                        _I: 'txtMName',
+
+                        _N: 'middlename',
+
+                        _C: 'form-control',
+
+                        _V: mname,
+
+                        },
+                        {
+
+                        _E: 'label',
+
+                        _C: 'form-label pt-2',
+
+                        _V: 'Last Name',
+
+                    },
+                    {
+                        _E: 'input',
+
+                        _T: 'text',
+
+                        _I: 'txtLastname',
+
+                        _N: 'lastname',
+
+                        _C: 'form-control',
+
+                        _V: lname,
+
+                    },
+                    {
+                        _E: 'input',
+
+                        _T: 'text',
+
+                        _I: 'txtLastname',
+
+                        _N: 'year',
+
+                        _C: 'form-control',
+
+                        _A: 'hidden',
+
+                        _V: year,
 
                     },
 
                 ]
 
+        id = [studentid];
+
+        d = JSON.stringify({
+            id
+        })
+
+        id = encryptData(d,hp);
+
         data =  {
-                        modalTitle: 'Edit Department',
+                        modalTitle: 'Edit Student Information',
                         
                         modalContent: content,
                         
@@ -54,13 +156,15 @@
                         
                         url: '/UNIV/EDIT',
                         
-                        v1: 'department_list',
+                        v1: 'Student_list',
                         
-                        v2: 'Department updated successfully.',
+                        v2: 'Student Information updated successfully.',
                         
-                        v3: code,
+                        v3: id,
                         
-                        v4: ''
+                        v4: '',
+
+                        mi: '',
                 }
 
         __BUILDER(data);
@@ -249,7 +353,17 @@
 
     $('body').on('click', '.__delete', function () {
 
+       
+
         code = $(this).attr('code');
+
+        id = [code];
+
+        d = JSON.stringify({
+            _D: id
+        })
+
+        id = encryptData(d,hp);
 
         content = [
                     {
@@ -264,7 +378,7 @@
                 ]
 
         data =  {
-                    modalTitle: 'Delete Clearance Requirement',
+                    modalTitle: 'Delete Student Information',
                     
                     modalContent: content,
                     
@@ -274,11 +388,11 @@
                     
                     url: '/UNIV/DELETE',
                     
-                    v1: 'department_list',
+                    v1: 'student_list',
                     
-                    v2: 'Clearance requirement deleted successfully.',
+                    v2: 'Student information deleted successfully.',
                     
-                    v3: code,
+                    v3: id,
                     
                     v4: ''
                 }

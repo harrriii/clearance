@@ -23,9 +23,10 @@ trait library
     //     return $role;
     // }
     // t,c,j,w,g,o,lj,wo
-    public static function __FETCHDATA($TABLE, $COLUMN, $_JOIN = null, $_WHERE = null, $_GRPBY = null, $_ORDBY = null, $_LJOIN = null, $_WHEREOR = null)
+    public static function __FETCHDATA($TABLE, $COLUMN, $_JOIN = null, $_WHERE = null, $_GRPBY = null, $_ORDBY = null, $_LJOIN = null, $_WHEREOR = null, $_WHERENOTIN = null)
     {   
 
+        // dd($_WHERENOTIN);
         if ($COLUMN == '*'){
 
             $TABLE_COLUMNS = Schema::getColumnListing($TABLE);
@@ -108,7 +109,18 @@ trait library
 
         }
 
-        // if($TABLE == 'clearance_sheet'){
+        if( isset($_WHERENOTIN) )
+        {
+           
+            $DATA->whereNotIn($_WHERENOTIN[0], function($q) use ($_WHERENOTIN){
+
+                $q->select($_WHERENOTIN[1])->from($_WHERENOTIN[2]);
+
+            });
+
+        }
+
+        // if($TABLE == 'clearance_sheet_details'){
         //     return $DATA->toSql();
         // }
        
