@@ -824,6 +824,8 @@ class DashboardController extends Controller
 
         $clearanceBatch = library::__FETCHLATESTCODE($t,$c,$o,$a,0);
 
+        $clearanceBatch--;
+
         $t =    'clearance_sheet';
 
         $c =    [
@@ -834,7 +836,7 @@ class DashboardController extends Controller
                     ['student_id','=', $studentId],
                     ['batch','=', $clearanceBatch]
                 ];
-
+              
         $sheetNo = library::__FETCHDATA($t,$c,null,$w);
 
         $data = ['nosheet'];
@@ -888,7 +890,7 @@ class DashboardController extends Controller
 
             $sheetNo = 0;
 
-            return view('pages/dashboard/student/clearanceinformation',compact('role','id','sheetNo'));
+            return view('pages/dashboard/student/clearanceinformation',compact('role','id','sheetNo','data'));
 
         }
         

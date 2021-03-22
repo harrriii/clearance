@@ -26,7 +26,7 @@ trait library
     public static function __FETCHDATA($TABLE, $COLUMN, $_JOIN = null, $_WHERE = null, $_GRPBY = null, $_ORDBY = null, $_LJOIN = null, $_WHEREOR = null, $_WHERENOTIN = null)
     {   
 
-        // dd($_WHERENOTIN);
+        // dd($_WHERE);
         if ($COLUMN == '*'){
 
             $TABLE_COLUMNS = Schema::getColumnListing($TABLE);
@@ -120,9 +120,10 @@ trait library
 
         }
 
-        // if($TABLE == 'clearance_sheet_details'){
-        //     return $DATA->toSql();
-        // }
+        /* if($TABLE == 'clearance_sheet'){
+            dd($_WHERE);
+            dd($DATA->toSql());
+        } */
        
         // dd($DATA->get());
        

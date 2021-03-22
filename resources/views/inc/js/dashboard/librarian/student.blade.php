@@ -10,10 +10,7 @@
 
         addSearch('studentSearch','studentTable');
 
-<<<<<<< HEAD
-    $('.__complete').click('',function ()  {
-    })
-<<<<<<< HEAD
+
 
 
     $('.__revoke').click('',function ()  {
@@ -72,12 +69,10 @@
 
                         _A: 'hidden'
 
-=======
-=======
         addSearch('requiredSearch','requiredTable');
 
         addSearch('completedSearch','completedTable');
->>>>>>> 1dee28c6897ecd21f57624c543b4568252298d22
+
 
 
     })
@@ -118,11 +113,7 @@
                             _C: 'form-label',
 
                             _V: 'Do you want to revoke this clearance requirement?'
-<<<<<<< HEAD
 
->>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
-=======
->>>>>>> 1dee28c6897ecd21f57624c543b4568252298d22
                     }
                    
                 ]
@@ -142,15 +133,9 @@
                         
                         v2: 'Clearance requirement revoked successfully.',
                         
-<<<<<<< HEAD
-                        v3: 'custom',
-                        
-                        v4: multiInput
-=======
                         v3: sheets,
                         
                         v4: v4Data
->>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
                 }
 
         __BUILDER(data);
@@ -627,7 +612,6 @@
                     }
                    
                 ]
-<<<<<<< HEAD
 
         data =  {
 
@@ -651,31 +635,6 @@
 
                     v5: '',
 
-=======
-
-        data =  {
-
-                    modalTitle: 'Require Clearance',
-                    
-                    modalContent: content,
-                    
-                    buttonSubmit:  'Save',
-                    
-                    buttonCancel: 'Close',
-                    
-                    url: '/UNIV/INSERT',
-                    
-                    v1: 'clearance_sheet_details',
-                    
-                    v2: 'Clearance requirement added successfully.',
-                    
-                    v3: '',
-                    
-                    v4: '',
-
-                    v5: '',
-
->>>>>>> 7cc4219d06502a525babdc583eac954c414a85a5
                     mi: multiInput,
 
                 }

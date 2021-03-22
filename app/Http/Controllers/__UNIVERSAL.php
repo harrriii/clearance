@@ -95,8 +95,6 @@ class __UNIVERSAL extends Controller
 
         $JSON = $this->cryptoJsAesDecrypt('mlqu-hash-password-2021',$DATA);
 
-        // dd($JSON);
-
         $t = null;
 
         $c = null;
